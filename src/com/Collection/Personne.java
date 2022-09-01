@@ -1,6 +1,7 @@
 package com.Collection;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 public class Personne implements Comparator<Personne>
 {
@@ -75,5 +76,20 @@ public class Personne implements Comparator<Personne>
 
         return o2.getAge()-o1.getAge();}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Personne)) return false;
+        Personne personne = (Personne) o;
+        return getAge() == personne.getAge() && Objects.equals(getNom(), personne.getNom()) && Objects.equals(getPrenom(), personne.getPrenom()) && Objects.equals(getGenre(), personne.getGenre());
+    }
+
+
+// deux element ont le meme hashCode n'implique pas qu'il sont egaut on doit passer averifier avec la fonction equals
+    //deux element n'ont pas le meme hashcode ne sont pas le memes
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNom(), getPrenom(), getGenre(), getAge());
+    }
 }
 
