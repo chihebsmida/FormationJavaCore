@@ -126,6 +126,8 @@ List<Personne> personneList=new ArrayList<>();
         // calculer la moyenne des longuers des prenoms des "HOMME" pour une liste des Personnes
         //1 avec Collection
         //2 avec les stream simple
-        //3 avec les stream parallele
+        //3 avec les stream parallel
+
+
     }
 }
