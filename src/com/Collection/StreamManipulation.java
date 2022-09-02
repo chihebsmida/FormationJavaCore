@@ -128,6 +128,28 @@ List<Personne> personneList=new ArrayList<>();
         //2 avec les stream simple
         //3 avec les stream parallel
 
+        double sum = 0;
+        int count = 0;
+        for(Personne personne1: personneList) {
+            if(null != personne1.getPrenom() && "HOMME".equals(personne1.getGenre()))
+            {
+                sum += personne1.getPrenom().length();
+                count++;
+            }
+        }
+        if(count>0) System.out.println("Somme avec collection = "+ (sum/count));
+        System.out.println("------------------------------------------");
+        System.out.println("Somme avec stream = "+ personneList.stream()
+                .filter(personne1 -> null != personne1.getPrenom() && "HOMME".equals(personne1.getGenre()))
+                .mapToInt(p -> p.getPrenom().length())
+                .average().orElse(0));
+        System.out.println("------------------------------------------");
+        System.out.println("Somme avec stream para = "
+                + personneList.parallelStream()
+                .filter(personne1 -> null != personne1.getPrenom() && "HOMME".equals(personne1.getGenre()))
+                .mapToInt(p -> p.getPrenom().length())
+                .average().orElse(0));
+
 
     }
 }
